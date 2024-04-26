@@ -1,20 +1,26 @@
+{% assign main_menu_linklist = linklists[section.settings.menu].links %}
+
 <div class="relative bg-white" x-data="{ mobileMenuOpen: false }">
     <div class="mx-auto px-4 sm:px-6">
       <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
         <!-- STORE NAME / STORE LOGO -->
         <div class="flex justify-start lg:flex-1 truncate">
-          <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>
+            {% if section.settings.shop_name != blank %}
+                <h1 class="text-xl font-bold truncate">{{ section.settings.shop_name }}</h1> 
+            {% else %}
+                <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>                             
+            {% endif %}
         </div>
 
-        <div class="-mr-2 -my-2 ml-3 md:hidden">
+        {% comment %} <div class="-mr-2 -my-2 ml-3 md:hidden">
             <button x-on:click="mobileMenuOpen = true" type="button" class="bg-white p-2 inline-flex items-center justify-center focus:outline-none">
                 {% render 'icone-hamburger' %}
             </button>
-        </div>
+        </div> {% endcomment %}
   
         <!-- NAVIGATION MENU DESK -->
         <nav x-data="{ open: false }" class="hidden md:flex space-x-10">
-            {% for link in linklists.main-menu.links %}
+            {% for link in main_menu_linklist %}
                 {% if link.links != blank %}
                     {% assign link_handle = link.handle | replace: '-', '_' %}
                     <div x-data="{ {{ link_handle }}: false}" class="relative">
@@ -54,8 +60,10 @@
 
         <!-- CONTA DO CLIENTE MENU DESK -->     
         <div class="hidden md:flex items-center justify-end md:flex-1 space-x-5">
-            <a href="{{ routes.account_login_url }}" class="text-base text-gray-500 hover:text-gray-900">Entre</a>
-            <a href="{{ routes.account_register_url }}" class="text-base text-gray-500 hover:text-gray-900">Criar conta</a> 
+            {% if shop.customer_accounts_enabled %}
+                <a href="{{ routes.account_login_url }}" class="text-base text-gray-500 hover:text-gray-900">Entre</a>
+                <a href="{{ routes.account_register_url }}" class="text-base text-gray-500 hover:text-gray-900">Criar conta</a>                
+            {% endif %}
             <a href="{{ routes.cart_url }}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-900">
                 {% render 'icone-carrinho-de-compras' %}
             </a>            
@@ -65,7 +73,7 @@
     </div>
 
         <!-- MOBILE MENU CONTAINER -->
-    <div x-show="mobileMenuOpen" class="absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden">
+    {% comment %} <div x-show="mobileMenuOpen" class="absolute z-10 top-0 inset-x-0 p-2 transform origin-top-left md:hidden">
         <div class="shadow-lg rounded-lg ring-1 ring-black ring-opacity-5 bg-white w-full">
             <div class="p-5 divide-y-2 divide-gray-50">
 
@@ -115,5 +123,29 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
 </div>
+
+
+{% schema %}
+    {
+        "name": "Header",
+        "settings": [
+            {
+                "type": "text",
+                "id": "shop_name",
+                "label": "Nome ou logo da loja",
+                "default": "Nome da loja",
+                "info": "Insira o nome ou a logo da sua loja."
+            },
+            {
+                "type": "link_list",
+                "id": "menu",
+                "label": "Menu do Cabeçalho",
+                "default": "main-menu",
+                "info": "Escolha um dos menus da sua lista."
+            }
+        ]
+    }
+{% endschema %}
+
