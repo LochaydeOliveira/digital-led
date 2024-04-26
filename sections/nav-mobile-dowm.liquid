@@ -1,58 +1,58 @@
-<div class="relative bg-white px-4 py-0 shadow-sm nav-app-mobile w-full" x-data="{ mobileMenuOpen: false }">
-    <div class="mx-auto px-4 sm:px-6 w-full">
+<div class="relative bg-white px-4 py-2 shadow-sm nav-app-mobile w-full" x-data="{ mobileMenuOpen: false }">
+    <div class="mx-auto sm:px-6 w-full">
       <div class="flex justify-between items-center py-3 md:justify-start md:space-x-10">
         <!-- STORE NAME / STORE LOGO -->
 
 
-        {% for link in linklists.nav-dowm-menu.links %}            
-            <div class="-mr-2 -my-2 ml-3 md:hidden">
-                <button x-on:click="mobileMenuOpen = true" type="button" class="p-2 inline-flex items-center justify-center focus:outline-none">
-                    {% if link.title = 'Envio' %}
-                        {% render 'icone-envio' %}
-                    {% elsif link.title = 'Eu' %}
-                        {% render 'icone-conta-cliente' %}   
+        {% for link in linklists.nav-dowm-menu.links %}   
+            {% assign link_title = link.title %}         
+            <div class="text-sm -mr-2 -my-2 ml-3 md:hidden "> 
+
+                <a href="{{ link.url }}" class="p-0 m-0 flex flex-col items-center justify-center focus:outline-none">                    
+                    {% if link_title == "Início" %}
+                        <div class="center-icon">
+                            {% render 'icone-inicio' %}
+                        </div>                        
+                        <div class="text-sm-custom p-0">{{ link.title }}</div>                      
                     {% endif %}
-                </button>
-                <p class="text-sm">{{ link.title }}</p>                
+
+                    {% if link_title == "Eu" %}
+                        <div class="center-icon">
+                            {% render 'icone-conta-cliente' %}
+                        </div>
+                        <div class="text-sm-custom p-0 ">{{ link.title }}</div>                    
+                    {% endif %}
+
+                    {% if link_title == "Envio" %}
+                        <div class="center-icon">
+                            {% render 'icone-envio' %}
+                        </div>
+                        <div class="text-sm-custom p-0">{{ link.title }}</div>                   
+                    {% endif %}
+
+                    {% if link_title == "WhatsApp" %}
+                        <div class="center-icon">
+                            {% render 'icone-whatsapp' %}
+                        </div>
+                        <div class="text-sm-custom p-0">{{ link.title }}</div>                   
+                    {% endif %}
+                </a>
+
+                    {% if link_title == "Menu" %}
+                        <div class="-my-2 md:hidden">
+                            <button x-on:click="mobileMenuOpen = true" type="button" class="p-2 inline-flex items-center justify-center focus:outline-none">
+                                <div>
+                                    {% render 'icone-hamburger-dowm' %}
+                                </div>
+                                {% comment %} <div class="text-sm-custom p-0">{{ link.title }}</div>    {% endcomment %}
+                            </button>                                             
+                        </div>                    
+                    {% endif %}
             </div>
         {% endfor %}
-                        
 
 
 
-        {% comment %} <div class="flex justify-start lg:flex-1 truncate">
-          <h1 class="text-xl font-bold truncate">{% render 'icone-inicio' %}</h1>
-        </div>
-
-        <div class="-mr-2 -my-2 ml-3 md:hidden">
-            <button x-on:click="mobileMenuOpen = true" type="button" class="p-2 inline-flex items-center justify-center focus:outline-none">
-                {% render 'icone-conta-cliente' %}
-            </button>
-            {{ link.title }}
-        </div>
-
-        <div class="-mr-2 -my-2 ml-3 md:hidden">
-            <button x-on:click="mobileMenuOpen = true" type="button" class="p-2 inline-flex items-center justify-center focus:outline-none">
-                {% render 'icone-envio' %}
-            </button>
-            {{ link.title }}
-        </div>
-        
-        <div class="-mr-2 -my-2 ml-3 md:hidden">
-            <button x-on:click="mobileMenuOpen = true" type="button" class="p-2 inline-flex items-center justify-center focus:outline-none">
-                {% render 'icone-whatsapp' %}
-            </button>
-        </div>
-
-        <div class="-mr-2 -my-2 ml-3 md:hidden">
-            <button x-on:click="mobileMenuOpen = true" type="button" class="p-2 inline-flex items-center justify-center focus:outline-none">
-                {% render 'icone-hamburger-dowm' %}
-            </button>
-        </div> {% endcomment %}
-
-
-
-  
         <!-- NAVIGATION MENU DESK -->
         <nav x-data="{ open: false }" class="hidden md:flex space-x-10">
             {% for link in linklists.main-menu.links %}
