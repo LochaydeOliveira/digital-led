@@ -1,6 +1,6 @@
 <h1>{{ article.title }}</h1>
 
-{% comment %} <small>{{ article.author }}</small> {% endcomment %}
+<small>{{ article.author }}</small>
 
 <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
 
