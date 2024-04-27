@@ -3,6 +3,14 @@
     <div class="my-4">
         <p class="text-base md:text-xl leading-normal">{{ section.settings.subtext_title }}</p>        
     </div>
+    <div class="my-4">
+        {% if section.settings.button_url == blank %}
+            {% assign shop_url = shop.secure_url %}
+        {% else %}
+            {% assign shop_url = section.settings.button_url %}
+        {% endif %}
+        <a href="{{ shop_url }}" class="px-4 inline py-2 text-base font-medium shadow bg-green-600 hover:bg-green-800 text-white">{{ section.settings.button_label }}</a>
+    </div>
 </div>
 
 {% schema %}
@@ -23,6 +31,17 @@
                 "id": "subtext_title",
                 "default": "Página não encontrada.",
                 "label": "Texto página 404"
+            },
+            {
+                "type": "text",
+                "id": "button_label",
+                "default": "Página inicial",
+                "label": "Texto do botão"
+            },
+            {
+                "type": "url",
+                "id": "button_url",
+                "label": "URL do botão"
             }
         ]
     }
