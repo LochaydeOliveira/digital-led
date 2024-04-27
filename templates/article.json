@@ -10,7 +10,6 @@
         },
         "thumbnail": {
           "type": "featured_image",
-          "disabled": true,
           "settings": {
           }
         },
