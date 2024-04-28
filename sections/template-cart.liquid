@@ -2,15 +2,15 @@
     <div class="p-4">
         <div class="max-w-6xl flex-xol my-10 mx-auto">
             <div class="flex items-end justify-between my-5"></div>
-            <h1 class="text-3xl"></h1>
-            <a href="" class="text-blue-600 hover:text-blue-800 font-medium underline"></a>
+            <h1 class="text-3xl">Seu carrinho</h1>
+            <a href="{{ routes.all_products_collection_url }}" class="text-blue-600 hover:text-blue-800 font-medium underline">Continuar comprando</a>
         </div>
     </div>
 {% else %}
     <div class="max-w-xl h-60 my-4 mx-auto flex items-center justify-center">
         <div class="text-center">
             <h1 class="text-3xl my-4">Seu carrinho está vazio</h1>
-            <div class="my-4 py-4"><a href="{{ routes.all_products_collection_url }}" class="border-gray-600 text-white bg-gray-600 px-8 py-3">Continuar comprando</a></div>
+            <div class="my-4 py-4"><a href="{{ routes.all_products_collection_url }}" class="border-gray-600 text-white bg-gray-600 px-8 py-3">Voltar a loja</a></div>
         </div>
     </div>    
 {% endif %}
