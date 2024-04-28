@@ -24,9 +24,9 @@
               <tr class="table-row">
                 <td class="py-4 px-2 flex flex-col justify-center">
                   <a href="{{ item.url }}">
-                    {% if item.image %}
+                    {% if line_item.image %}
                       <img
-                        src="https://cdn.shopify.com/s/files/1/0870/4252/3429/files/main-image-6.jpg?v=1714273779"
+                        src="{{ line_item.img | img_url: 'small' }}"
                         alt="{{ item.title | escape }}"
                         class="w-20 h-20 object-cover border"
                       >
