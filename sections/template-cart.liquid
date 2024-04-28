@@ -24,7 +24,7 @@
               <tr class="table-row">
                 <td class="py-4 px-2 flex flex-col justify-center">
                   <a href="{{ item.url }}">
-                    {% if item.img %}
+                    {% if item.title %}
                       <img
                         src="{{ item.img | image_url: 'small' }}"
                         alt="{{ item.title | escape }}"
