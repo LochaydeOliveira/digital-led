@@ -20,8 +20,8 @@
                             <tr class="table-row">
                                 <td class="py-4 px-2 flex flex-col justify-center">
                                     <a href="{{ item.url }}">
-                                        {% if item.image %}
-                                            <img src="{{ item.image | image_url: 'small' }}" alt="{{ item.title | escape }}" class="w-20 h-20 object-cover border">
+                                        {% if item.img %}
+                                            <img src="{{ item.img | image_url: 'small' }}" alt="{{ item.title | escape }}" class="w-20 h-20 object-cover border">
                                         {% else %}
                                            {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover border' }}    
                                         {% endif %}
