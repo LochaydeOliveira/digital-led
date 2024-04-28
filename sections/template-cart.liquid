@@ -26,9 +26,9 @@
                   <a href="{{ item.url }}">                    
                     {% if item.image %}
                       <img
-                        src="{{ item.image | img_url: 'small' }}"
+                        src="{{ item.image | img_url: 'large' }}"
                         alt="{{ item.title | escape }}"
-                        class="w-20 h-20 object-cover border shadow-sm"
+                        class="w-32 h-32 object-cover border shadow-sm"
                         width="{{ item.image.width }}"
                         height="{{ item.image.height }}"
                       >
