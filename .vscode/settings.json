@@ -2,5 +2,9 @@
     "html-css-class-completion.enableEmmetSupport": true,
     "emmet.preferences": {
         "emmet.includeLanguages": { "liquid": "html" },
+        "emmet.triggerExpansionOnTab": true,
+        "emmet.showSuggestionsAsSnippets": true,
+        "editor.snippetSuggestions": "top"
+
     }
 }
