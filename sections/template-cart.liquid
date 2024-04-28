@@ -26,7 +26,7 @@
                   <a href="{{ item.url }}">
                     {% if item.image %}
                       <img
-                        src="{{ item.image | img_url: 'large' }}"
+                        src="{{ item.image | img_url: 'compact' }}"
                         alt="{{ item.title | escape }}"
                         class="w-30 h-30 object-cover border"
                         width="{{ item.image.width }}"
